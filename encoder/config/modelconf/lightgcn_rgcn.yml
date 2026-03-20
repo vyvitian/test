@@ -1,0 +1,62 @@
+optimizer:
+  name: adam
+  lr: 1.0e-3
+  weight_decay: 0
+
+train:
+  epoch: 3000
+  batch_size: 4096
+  save_model: true
+  loss: pairwise
+  test_step: 3
+  reproducible: true
+  seed: 2023
+  patience: 5
+
+test:
+  metrics: [recall, ndcg]
+  k: [5, 10, 20]
+  batch_size: 1024
+
+data:
+  type: general_agcf
+  name: amazon
+  mat_type: uai
+  pre_norm: true
+
+
+model:
+  name: lightgcn_rgcn
+  label: ori
+  # general parameters here
+  keep_rate: 0.9
+  embedding_size: 64
+  use_unify_layer_num: true
+
+
+  # dataset-specific parameters here
+  layer_num: 3
+  reg_weight: 1.0e-5
+  # for amazon
+  amazon:
+    keep_rate: 0.9
+    layer_num: 3
+    reg_weight: 1.0e-7
+    eps: 0.1
+  # for yelp
+  yelp:
+    keep_rate: 0.9  
+    layer_num: 3
+    reg_weight: 1.0e-6
+    eps: 0.1
+  # for steam
+  steam:
+    keep_rate: 0.8
+    layer_num: 3
+    reg_weight: 1.0e-7
+    eps: 0.2
+  Office:
+    keep_rate: 0.9
+    layer_num: 3
+    reg_weight: 5.0e-6
+    eps: 0.1
