@@ -1,0 +1,6 @@
+.DS_Store
+__MACOSX/
+agcf_data/
+*.pkl
+*.pyc
+__pycache__/
